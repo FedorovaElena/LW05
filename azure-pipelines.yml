@@ -31,20 +31,20 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+steps:
 - task: DownloadBuildArtifacts@0
   displayName: 'Download Build Artifacts'
   inputs:
     artifactName: drop
     itemPattern: '*.exe'
-
+steps:
 - task: ArchiveFiles@2
   displayName: 'Archive $(Agent.ReleaseDirectory)\FedorovaElena.LW05\drop\QuadEquation\bin\Release\'
   inputs:
     rootFolderOrFile: '$(Agent.ReleaseDirectory)\FedorovaElena.LW05\drop\QuadEquation\bin\Release\'
     archiveFile: '$(Agent.ReleaseDirectory)\FedorovaElena.LW05\drop\$(Build.BuildId).zip'
     verbose: true
-
+steps:
 - task: GitHubRelease@0
   displayName: 'GitHub release (create)'
   inputs:
